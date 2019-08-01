@@ -23,7 +23,7 @@ $script = <<SCRIPT
   # Accept all IPv4 connections - FOR DEVELOPMENT ONLY!!!
   sudo cat >> /etc/postgresql/10/main/pg_hba.conf <<EOF
     host    all         all         0.0.0.0/0             md5
-    EOF
+  EOF
 
   echo "-------------------- creating postgres vagrant role with password vagrant"
   # Create Role and login
@@ -40,6 +40,8 @@ $script = <<SCRIPT
   sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 2
 
   sudo update-alternatives --config python3
+
+  apt-get install python3.7-dev
   #create ecommerce env
   # python3 -m venv ecommerce-venv
 

@@ -1,18 +1,8 @@
 import os
 
-import environ
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-env.read_env(os.path.join(BASE_DIR, '.env'))
-
-DEBUG = env('DEBUG')
 
 
 # Quick-start development settings - unsuitable for production
@@ -103,13 +93,18 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ecommerce',
-        'USER': 'postgres',
-        'PASSWORD': 'KMF)jmf2-92[2[5kvm-n6v9=o53:2PM6',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'USER': os.getenv('DEV_DB_USER'),
+        'PASSWORD': os.getenv('DEV_DB_PASSWORD'),
+        'HOST': os.getenv('DEV_DB_HOST'),
+        'PORT': os.getenv('DEV_DB_PORT'),
     }
 }
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
