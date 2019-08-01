@@ -1,7 +1,18 @@
 import os
 
+import environ
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+env.read_env(os.path.join(BASE_DIR, '.env'))
+
+DEBUG = env('DEBUG')
 
 
 # Quick-start development settings - unsuitable for production
@@ -60,41 +71,42 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 # Logging
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {"format": "%(levelname)s %(message)s"}
     },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formater': 'simple',
-        },
-    },
-    'loggers': {
-        'main': {
-            'level': 'DEBUG',
-            'propagate': True,
-            'handlers': ['console'],
-        },
-        'ecommerce': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
         }
     },
+    "loggers": {
+        "main": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "booktime": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
 }
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ecommerce',
+        'USER': 'postgres',
+        'PASSWORD': 'KMF)jmf2-92[2[5kvm-n6v9=o53:2PM6',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
