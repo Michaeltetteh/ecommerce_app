@@ -11,6 +11,13 @@ class Product(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
 
 
-class ProductImage(models.Models):
+class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="product-images")
+
+
+class ProductTag(models.Model):
+    products = models.ManyToManyField(Product, blank=True)
+    name = models.CharField(max_length=32)
+    slug = model.SlugField(max_length=48)
+    description = models.TextField(default=True)
