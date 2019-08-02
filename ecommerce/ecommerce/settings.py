@@ -91,7 +91,7 @@ LOGGING = {
             "level": "DEBUG",
             "propagate": True,
         },
-        "booktime": {
+        "ecommerce": {
             "handlers": ["console"],
             "level": "DEBUG",
             "propagate": True,
