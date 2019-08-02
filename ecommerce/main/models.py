@@ -19,5 +19,5 @@ class ProductImage(models.Model):
 class ProductTag(models.Model):
     products = models.ManyToManyField(Product, blank=True)
     name = models.CharField(max_length=32)
-    slug = model.SlugField(max_length=48)
+    slug = models.SlugField(max_length=48)
     description = models.TextField(default=True)
